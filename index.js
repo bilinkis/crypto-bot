@@ -12,21 +12,37 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 // Process application/json
 app.use(bodyParser.json())
+app.post('/webhook', function (req, res) {
+  var data = req.body;
 
-// Index route
-app.get('/', function (req, res) {
-    res.send('Hello world, I am a chat bot')
-})
+  // Make sure this is a page subscription
+  if (data.object == 'page') {
+    // Iterate over each entry
+    // There may be multiple if batched
+    data.entry.forEach(function(pageEntry) {
+      var pageID = pageEntry.id;
+      var timeOfEvent = pageEntry.time;
 
-// for Facebook verification
-app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] == '1234') {
-        res.send(req.query['hub.challenge'])
-    }
-    res.send('Error, wrong token')
-})
+      // Iterate over each messaging event
+      pageEntry.messaging.forEach(function(messagingEvent) {
+        if (messagingEvent.optin) {
+          receivedAuthentication(messagingEvent);
+        } else if (messagingEvent.message) {
+          receivedMessage(messagingEvent);
+        } else if (messagingEvent.delivery) {
+          receivedDeliveryConfirmation(messagingEvent);
+        } else if (messagingEvent.postback) {
+          receivedPostback(messagingEvent);
+        } else {
+          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
+        }
+      });
+    });
 
-// Spin up the server
-app.listen(app.get('port'), function() {
-    console.log('running on port', app.get('port'))
-})
+    // Assume all went well.
+    //
+    // You must send back a 200, within 20 seconds, to let us know you've 
+    // successfully received the callback. Otherwise, the request will time out.
+    res.sendStatus(200);
+  }
+});
