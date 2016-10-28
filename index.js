@@ -96,6 +96,26 @@ app.post('/webhook', function (req, res) {
             case "VEF":
             sendMessage(event.sender.id, {text: data.VEF.last});
             break;
+            case "brl":
+            sendMessage(event.sender.id, {text: data.BRL.last});
+            break;
+            case "Brl":
+            sendMessage(event.sender.id, {text: data.BRL.last});
+            break;
+            case "BRL":
+            sendMessage(event.sender.id, {text: data.BRL.last});
+            break;
+            case "uyu":
+            sendMessage(event.sender.id, {text: data.UYU.last});
+            break;
+            case "Uyu":
+            sendMessage(event.sender.id, {text: data.UYU.last});
+            break;
+            case "UYU":
+            sendMessage(event.sender.id, {text: data.UYU.last});
+            break;
+            default:
+            sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
 
 
 
