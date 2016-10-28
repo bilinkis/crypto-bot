@@ -30,7 +30,7 @@ app.post('/webhook', function (req, res) {
         //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "loading..."});
         var currency = event.message.text.toUpperCase();
-        console.log(currency);
+        
         switch(currency)
         {
             
@@ -72,7 +72,7 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: "The last price  : " +  data.MXN.last});
             break;
             case "CAD":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.CAD.last});
             break;
             default:
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
