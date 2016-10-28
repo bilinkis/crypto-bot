@@ -32,7 +32,7 @@ app.post('/webhook', function (req, res) {
         switch(event.message.text)
         {
             case "usd":
-                
+            sendMessage(event.sender.id, {text: "The last price is:"});    
             sendMessage(event.sender.id, {text: data.USD.last});
             break;
             case "Usd":
@@ -140,6 +140,15 @@ app.post('/webhook', function (req, res) {
             break;
             case "MXN":
             sendMessage(event.sender.id, {text: data.MXN.last});
+            break;
+            case "cad":
+            sendMessage(event.sender.id, {text: data.CAD.last});
+            break;
+            case "Cad":
+            sendMessage(event.sender.id, {text: data.CAD.last});
+            break;
+            case "CAD":
+            sendMessage(event.sender.id, {text: data.CAD.last});
             break;
             default:
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
