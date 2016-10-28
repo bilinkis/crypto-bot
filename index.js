@@ -25,22 +25,24 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
-        var data = JSON.parse(Get('https://blockchain.info/es/ticker'));
-        console.log(data);
-        console.log(data.USD);
+        
         switch(event.message.text)
         {
             case "usd":
-            sendMessage(event.sender.id, {text: data.USD.last});
+            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/USD/"));
+            sendMessage(event.sender.id, {text: data.last});
             break;
             case "USD":
-            sendMessage(event.sender.id, {text: data.USD.last});  
+            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/USD/"));
+            sendMessage(event.sender.id, {text: data.last});  
             break;
             case "ARS":
-            sendMessage(event.sender.id, {text: data.ARS.last});
+            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/ARS/"));
+            sendMessage(event.sender.id, {text: data.last});
             break;
             case "ars":
-            sendMessage(event.sender.id, {text: data.ARS.last});
+            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/ARS/"));
+            sendMessage(event.sender.id, {text: data.last});
             break;
         }
         /*wolfram.query(event.message.text, function(err, result) {
