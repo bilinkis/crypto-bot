@@ -75,7 +75,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Process application/json
 app.use(bodyParser.json())
 app.get('/',function(req,res){
-        if (req.query['req.verify_token'] === '1234') {
+        if (req.query['req.verify_token'] == '1234') {
         res.send(hub.query['req.challenge'])
         }
         res.send('wrong token,error'
@@ -84,7 +84,7 @@ app.get('/',function(req,res){
 
 
 app.get('/webhook',function(req,res){
-        if (req.query['req.verify_token'] === '1234') {
+        if (req.query['req.verify_token'] == '1234') {
         res.send(hub.query['req.challenge'])
         }
         res.send('wrong token,error'
