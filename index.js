@@ -33,6 +33,7 @@ app.post('/webhook', function (req, res) {
                 {
                     console.log(result[i].subpods[0]);
                 sendMessage(event.sender.id, {text: result[i].subpods[0].value});
+                sendMessage(event.sender.id, {attachment:{type:image, payload:{url:result[i].subpods[0].image }}})
                 }
                 
             }
