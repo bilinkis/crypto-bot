@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-const wolfram = require('wolfram').createClient('6PUVEA-PYW7HQL6AJ');
+const wolfram = require('wolfram').createClient('6PUVEA-P8K93R4666');
 
 app.set('port', (process.env.PORT || 5000))
 
