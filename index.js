@@ -28,7 +28,7 @@ app.post('/webhook', function (req, res) {
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         console.log(data);
         console.log(data.USD);
-        sendMessage(event.sender.id,{text: "loading..."});
+        //sendMessage(event.sender.id,{text: "loading..."});
         switch(event.message.text)
         {
             case "usd":
@@ -116,6 +116,7 @@ app.post('/webhook', function (req, res) {
             break;
             default:
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
+            sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com for the currency to be added!"});
 
 
 
