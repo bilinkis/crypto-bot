@@ -29,130 +29,53 @@ app.post('/webhook', function (req, res) {
         console.log(data);
         console.log(data.USD);
         //sendMessage(event.sender.id,{text: "loading..."});
-        switch(event.message.text)
+        var currency = event.message.text.toUpperCase();
+        switch(currency)
         {
-            case "usd":
             
-            sendMessage(event.sender.id, {text: "The last price is: " + data.USD.last});
-            break;
-            case "Usd":
-                
-            sendMessage(event.sender.id, {text: "The last price is: " + data.USD.last});
-            break;
             case "USD":
             sendMessage(event.sender.id, {text: "The last price is: " + data.USD.last});  
             break;
             case "ARS":
             sendMessage(event.sender.id, {text: "The last price is: " + data.ARS.last});
             break;
-            case "Ars":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.ARS.last});
-            break;
-            case "ars":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.ARS.last});
-            break;
-            case "cny":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.CNY.last});
-            break;
-            case "Cny":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.CNY.last});
-            break;
+            
             case "CNY":
             sendMessage(event.sender.id, {text: "The last price is: " + data.CNY.last});
-            break;
-            case "pen":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.PEN.last});
-            break;
-            case "Pen":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.PEN.last});
             break;
             case "PEN":
             sendMessage(event.sender.id, {text: "The last price is: " + data.PEN.last});
             break;
-            case "clp":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.CLP.last});
-            break;
-            case "Clp":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.CLP.last});
-            break;
             case "CLP":
             sendMessage(event.sender.id, {text: "The last price is: " + data.CLP.last});
-            break;
-            case "cop":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.COP.last});
-            break;
-            case "Cop":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.COP.last});
             break;
             case "COP":
             sendMessage(event.sender.id, {text: "The last price is: " + data.COP.last});
             break;
-            case "vef":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.VEF.last});
-            break;
-            case "Vef":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.VEF.last});
-            break;
             case "VEF":
             sendMessage(event.sender.id, {text: "The last price is: " +  data.VEF.last});
-            break;
-            case "brl":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.BRL.last});
-            break;
-            case "Brl":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.BRL.last});
             break;
             case "BRL":
             sendMessage(event.sender.id, {text: "The last price is: " +  data.BRL.last});
             break;
-            case "uyu":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.UYU.last});
-            break;
-            case "Uyu":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.UYU.last});
-            break;
             case "UYU":
             sendMessage(event.sender.id, {text: "The last price is: " +  data.UYU.last});
-            break;
-            case "pyg":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.PYG.last});
-            break;
-            case "Pyg":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.PYG.last});
             break;
             case "PYG":
             sendMessage(event.sender.id, {text: "The last price is: " +  data.PYG.last});
             break;
-            case "bob":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.BOB.last});
-            break;
-            case "Bob":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.BOB.last});
-            break;
             case "BOB":
             sendMessage(event.sender.id, {text: "The last price is: " +  data.BOB.last});
-            break;
-            case "mxn":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.MXN.last});
-            break;
-            case "Mxn":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.MXN.last});
             break;
             case "MXN":
             sendMessage(event.sender.id, {text: "The last price  : " +  data.MXN.last});
             break;
-            case "cad":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.CAD.last});
-            break;
-            case "Cad":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.CAD.last});
-            break;
             case "CAD":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.CAD.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
             break;
             default:
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
-            setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000)
+            setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000);
             
 
 
