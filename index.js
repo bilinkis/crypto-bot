@@ -25,10 +25,9 @@ app.post('/webhook', function (req, res) {
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
         wolfram.query(event.message.text, function(err, result) {
-            if(err) sendMessage(event.sender.id, {text: err})
-            else{
-                
-                
+            if(result == undefined){
+                sendMessage(event.sender.id, {text: "I couldn't find what you were looking for, sorry m8!"});
+            } else{
                 for(var i = 0;i<result.length; i++)
                 {
                     console.log(result[i].subpods[0]);
