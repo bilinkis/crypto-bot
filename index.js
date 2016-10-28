@@ -29,9 +29,10 @@ app.post('/webhook', function (req, res) {
             else{
                 
                 console.log(result[1].subpods);
-                
-                sendMessage(event.sender.id, {text: result[1].subpods[0].value});
-                
+                for(var i = 0;i<result.Array.length; i++)
+                {
+                sendMessage(event.sender.id, {text: result[i].subpods[0].value});
+                }
                 
             }
             
