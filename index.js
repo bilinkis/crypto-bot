@@ -26,8 +26,14 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         wolfram.query(event.message.text, function(err, result) {
             if(err) sendMessage(event.sender.id, {text: err})
-          sendMessage(event.sender.id, {text: JSON.stringify(result).substring(0,319)});
-})
+            else{
+                var respuesta = JSON.parse(result);
+                sendMessage(event.sender.id, {text: respuesta.pod.subpod.plaintext});
+                
+                
+            }
+            
+            })
         
     }
     res.sendStatus(200);
