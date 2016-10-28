@@ -28,6 +28,7 @@ app.post('/webhook', function (req, res) {
             if(err) sendMessage(event.sender.id, {text: err})
             else{
                 var respuesta = JSON.parse(result);
+                console.log(respuesta);
                 sendMessage(event.sender.id, {text: respuesta.queryresult.pod.subpod.plaintext});
                 
                 
