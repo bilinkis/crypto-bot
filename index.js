@@ -4,8 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-const wolfram = require('wolfram');
-const Wolfram = new wolfram('6PUVEA-P8K93R4666');
+const wolfram = require('wolfram').createClient("6PUVEA-P8K93R4666");
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -25,7 +24,7 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
-        Wolfram.query(event.message.text, function(err, result) {
+        wolfram.query(event.message.text, function(err, result) {
             if(err) sendMessage(event.sender.id, {text: err})
           sendMessage(event.sender.id, {text: result});
 })
