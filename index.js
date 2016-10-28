@@ -27,7 +27,7 @@ app.post('/webhook', function (req, res) {
         wolfram.query(event.message.text, function(err, result) {
             if(err) sendMessage(event.sender.id, {text: err})
             else{
-                console.log(result[1].subpods.value.text);
+                console.log(result[1].subpods.image);
                 
                 sendMessage(event.sender.id, {text: "hola"});
                 
