@@ -31,8 +31,17 @@ app.post('/webhook', function (req, res) {
         switch(event.message.text)
         {
             case "usd":
-            sendMessage(event.sender.id, {text: data.USD.last});    
-            
+            sendMessage(event.sender.id, {text: data.USD.last});
+            break;
+            case "USD":
+            sendMessage(event.sender.id, {text: data.USD.last});  
+            break;
+            case "ARS":
+            sendMessage(event.sender.id, {text: data.ARS.last});
+            break;
+            case "ars":
+            sendMessage(event.sender.id, {text: data.ARS.last});
+            break;
         }
         /*wolfram.query(event.message.text, function(err, result) {
             if(result == undefined){
