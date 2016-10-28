@@ -27,8 +27,6 @@ app.post('/webhook', function (req, res) {
         wolfram.query(event.message.text, function(err, result) {
             if(err) sendMessage(event.sender.id, {text: err})
             else{
-                
-                var json = JSON.parse(result);
                 console.log(node.get('plaintext').text());
                 sendMessage(event.sender.id, {text: "wait for it"});
                 
