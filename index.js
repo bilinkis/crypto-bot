@@ -120,7 +120,7 @@ function sendMessage(recipientId, message, sender_action) {
         json: {
             recipient: {id: recipientId},
             message: message,
-            sender_action:sender_action;
+            sender_action:sender_action,
         }
     }, function(error, response, body) {
         if (error) {
