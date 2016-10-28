@@ -28,7 +28,8 @@ app.post('/webhook', function (req, res) {
             if(err) sendMessage(event.sender.id, {text: err})
             else{
                 
-                console.log(JSON.stringify(result));
+                var json = JSON.parse(result);
+                console.log(node.get('plaintext').text());
                 sendMessage(event.sender.id, {text: "wait for it"});
                 
                 
