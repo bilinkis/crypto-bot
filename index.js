@@ -25,25 +25,31 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
-        
+        var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
+        console.log(data);
+        console.log(data.USD);
         switch(event.message.text)
         {
             case "usd":
-            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/USD/"));
-            sendMessage(event.sender.id, {text: data.last});
+                
+            sendMessage(event.sender.id, {text: data.USD.last});
             break;
             case "USD":
-            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/USD/"));
-            sendMessage(event.sender.id, {text: data.last});  
+            sendMessage(event.sender.id, {text: data.USD.last});  
             break;
             case "ARS":
-            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/ARS/"));
-            sendMessage(event.sender.id, {text: data.last});
+            sendMessage(event.sender.id, {text: data.ARS.last});
             break;
             case "ars":
-            var data = JSON.parse(Get("https://api.bitcoinaverage.com/ticker/global/ARS/"));
-            sendMessage(event.sender.id, {text: data.last});
+            sendMessage(event.sender.id, {text: data.ARS.last});
             break;
+            case "cny":
+            sendMessage(event.sender.id, {text: data.CNY.last});
+            break;
+            case "CNY":
+            sendMessage(event.sender.id, {text: data.CNY.last});
+            break;
+            
         }
         /*wolfram.query(event.message.text, function(err, result) {
             if(result == undefined){
