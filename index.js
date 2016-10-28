@@ -28,7 +28,7 @@ app.post('/webhook', function (req, res) {
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         //console.log(data);
         //console.log(data.USD);
-        sendMessage(event.sender.id,{text: "fetching info..."}, {sender_action:"typing_on"});
+        sendMessage(event.sender.id,{text: "fetching info..."}, {sender_action:"TYPING_ON"});
         var currency = event.message.text.toUpperCase();
         
         switch(currency)
