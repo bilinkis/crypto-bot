@@ -25,8 +25,15 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
-        var data = JSON.parse(Get('http://api.bitcoincharts.com/v1/markets.json'));
+        var data = JSON.parse(Get('https://blockchain.info/es/ticker'));
         console.log(data);
+        console.log(data.USD);
+        switch(event.message.text)
+        {
+            case "usd":
+            sendMessage(event.sender.id, {text: data.USD.last});    
+            
+        }
         /*wolfram.query(event.message.text, function(err, result) {
             if(result == undefined){
                 sendMessage(event.sender.id, {text: "I couldn't find what you were looking for, sorry m8!"});
