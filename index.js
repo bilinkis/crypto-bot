@@ -28,9 +28,10 @@ app.post('/webhook', function (req, res) {
             if(err) sendMessage(event.sender.id, {text: err})
             else{
                 
-                console.log(result[1].subpods);
-                for(var i = 0;i<result.Array.length; i++)
+                
+                for(var i = 0;i<result.length; i++)
                 {
+                    console.log(result[i].subpods[0]);
                 sendMessage(event.sender.id, {text: result[i].subpods[0].value});
                 }
                 
