@@ -84,7 +84,7 @@ app.get('/',function(req,res){
 
 
 app.get('/webhook',function(req,res){
-        if (req.query['hub.verify_token'] === '1234') {
+        if (req.query['hub.verify_token'] == '1234') {
         res.send(hub.query['hub.challenge'])
         }
         res.send('wrong token,error'
