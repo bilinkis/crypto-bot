@@ -63,35 +63,25 @@ function sendMessage(recipientId, message) {
 app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'))
 })*/
-var express = require('express')
-var bodyParser = require('body-parser')
-var request = require('request')
-//the imports
+var express = require('express');
+var bodyParser = require('body-parser');
+var request = require('request');
+var app = express();
 
-app = express()
-app.set('port', (process.env.PORT || 5000))
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.listen((process.env.PORT || 3000));
 
-// Process application/json
-app.use(bodyParser.json())
-app.get('/',function(req,res){
-        if (req.query['req.verify_token'] == '1234') {
-        res.send(hub.query['req.challenge'])
-        }
-        res.send('wrong token,error'
-                 )
-        })
+// Server frontpage
+app.get('/', function (req, res) {
+    res.send('This is TestBot Server');
+});
 
-
-app.get('/webhook',function(req,res){
-        if (req.query['req.verify_token'] == '1234') {
-        res.send(hub.query['req.challenge'])
-        }
-        res.send('wrong token,error'
-                 )
-        })
-
-
-app.listen(app.get('port'), function(req,res) {
-           console.log('server running on port',app.get('port'))
-           })
+// Facebook Webhook
+app.get('/webhook', function (req, res) {
+    if (req.query['hub.verify_token'] === '1234') {
+        res.send(req.query['hub.challenge']);
+    } else {
+        res.send('Invalid verify token');
+    }
+});
