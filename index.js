@@ -28,6 +28,7 @@ app.post('/webhook', function (req, res) {
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         console.log(data);
         console.log(data.USD);
+        sendMessage(event.sender.id,{text: "loading..."});
         switch(event.message.text)
         {
             case "usd":
@@ -77,6 +78,25 @@ app.post('/webhook', function (req, res) {
             case "CLP":
             sendMessage(event.sender.id, {text: data.CLP.last});
             break;
+            case "cop":
+            sendMessage(event.sender.id, {text: data.COP.last});
+            break;
+            case "Cop":
+            sendMessage(event.sender.id, {text: data.COP.last});
+            break;
+            case "COP":
+            sendMessage(event.sender.id, {text: data.COP.last});
+            break;
+            case "vef":
+            sendMessage(event.sender.id, {text: data.VEF.last});
+            break;
+            case "Vef":
+            sendMessage(event.sender.id, {text: data.VEF.last});
+            break;
+            case "VEF":
+            sendMessage(event.sender.id, {text: data.VEF.last});
+            break;
+
 
 
 
