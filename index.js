@@ -26,7 +26,7 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         wolfram.query(event.message.text, function(err, result) {
             if(err) sendMessage(event.sender.id, {text: err})
-          sendMessage(event.sender.id, {text: JSON.stringify(result)});
+          sendMessage(event.sender.id, {text: JSON.stringify(result).substring(0,319)});
 })
         
     }
