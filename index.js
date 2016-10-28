@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 const wolfram = require('wolfram').createClient("6PUVEA-P8K93R4666");
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 app.set('port', (process.env.PORT || 5000))
 
