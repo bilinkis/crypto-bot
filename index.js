@@ -45,7 +45,7 @@ app.post('/webhook', function (req, res) {
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: "EAAa1VXnZAdXkBACH381vCcZAm0miInttzQN7IApZBpZAO14WrRdZA3Kb8iI615848h7SdBTcfWlY4Wx4gZBMS6AtGqBI7Ii5FGKyRCp4GtLmRmmZCkmpNuWdY0zvvjrtQpSu3Aa0JTfcORxg9J1XGa5qZAvkKH6th92EKCZCabW4j6AZDZD"},
+        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: 'POST',
         json: {
             recipient: {id: recipientId},
@@ -75,7 +75,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Process application/json
 app.use(bodyParser.json())
 app.get('/',function(req,res){
-        if (req.query['hub.verify_token'] == '1234') {
+        if (req.query['hub.verify_token'] === '1234') {
         res.send(hub.query['hub.challenge'])
         }
         res.send('wrong token,error'
@@ -84,7 +84,7 @@ app.get('/',function(req,res){
 
 
 app.get('/webhook',function(req,res){
-        if (req.query['hub.verify_token'] == '1234') {
+        if (req.query['hub.verify_token'] === '1234') {
         res.send(hub.query['hub.challenge'])
         }
         res.send('wrong token,error'
