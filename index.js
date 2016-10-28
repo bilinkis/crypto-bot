@@ -26,10 +26,11 @@ app.post('/webhook', function (req, res) {
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
-        console.log(data);
-        console.log(data.USD);
+        //console.log(data);
+        //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "loading..."});
         var currency = event.message.text.toUpperCase();
+        console.log(currency);
         switch(currency)
         {
             
