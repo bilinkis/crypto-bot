@@ -112,7 +112,7 @@ Httpreq.send(null);
 return Httpreq.responseText;          
 
     }
-function sendMessage(recipientId, message) {
+function sendMessage(recipientId, message, sender_action) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: "EAAa1VXnZAdXkBALTr0ZAYlopUWZA6u3YWhHpRg4toVpoXQ22lBVxEENqeTIEAsjoRmchI5nIAmScB4UuJ4MGjzQBDsv6SqDyPeAt33J3gHO8hkrFGFxfypS9nJ5RKaKk3ATW2NOZAVOmOhAoBgsZCwNr6SJiZAjrqm0vgUXcLP9AZDZD"},
@@ -120,6 +120,7 @@ function sendMessage(recipientId, message) {
         json: {
             recipient: {id: recipientId},
             message: message,
+            sender_action:sender_action;
         }
     }, function(error, response, body) {
         if (error) {
