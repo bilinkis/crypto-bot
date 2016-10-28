@@ -35,20 +35,20 @@ app.post('/webhook', function (req, res) {
         {
             
             case "USD":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});  
+            sendMessage(event.sender.id, {text: "The last price is: " + data.USD.last});  
             break;
             case "ARS":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.ARS.last});
             break;
             
             case "CNY":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.CNY.last});
             break;
             case "PEN":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.PEN.last});
             break;
             case "CLP":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.CLP.last});
             break;
             case "COP":
             sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
