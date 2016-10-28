@@ -29,7 +29,7 @@ app.post('/webhook', function (req, res) {
             else{
                 var respuesta = JSON.parse(result);
                 console.log(respuesta);
-                sendMessage(event.sender.id, {text: respuesta.queryresult.pod.subpod.plaintext});
+                sendMessage(event.sender.id, {text: "wait for it"/*respuesta.queryresult.pod.subpod.plaintext*/});
                 
                 
             }
