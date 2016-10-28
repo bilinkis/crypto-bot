@@ -34,10 +34,17 @@ app.post('/webhook', function (req, res) {
                 
             sendMessage(event.sender.id, {text: data.USD.last});
             break;
+            case "Usd":
+                
+            sendMessage(event.sender.id, {text: data.USD.last});
+            break;
             case "USD":
             sendMessage(event.sender.id, {text: data.USD.last});  
             break;
             case "ARS":
+            sendMessage(event.sender.id, {text: data.ARS.last});
+            break;
+            case "Ars":
             sendMessage(event.sender.id, {text: data.ARS.last});
             break;
             case "ars":
@@ -46,9 +53,35 @@ app.post('/webhook', function (req, res) {
             case "cny":
             sendMessage(event.sender.id, {text: data.CNY.last});
             break;
+            case "Cny":
+            sendMessage(event.sender.id, {text: data.CNY.last});
+            break;
             case "CNY":
             sendMessage(event.sender.id, {text: data.CNY.last});
             break;
+            case "pen":
+            sendMessage(event.sender.id, {text: data.PEN.last});
+            break;
+            case "Pen":
+            sendMessage(event.sender.id, {text: data.PEN.last});
+            break;
+            case "PEN":
+            sendMessage(event.sender.id, {text: data.PEN.last});
+            break;
+            case "clp":
+            sendMessage(event.sender.id, {text: data.CLP.last});
+            break;
+            case "Clp":
+            sendMessage(event.sender.id, {text: data.CLP.last});
+            break;
+            case "CLP":
+            sendMessage(event.sender.id, {text: data.CLP.last});
+            break;
+
+
+
+
+
             
         }
         /*wolfram.query(event.message.text, function(err, result) {
