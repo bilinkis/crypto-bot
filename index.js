@@ -28,51 +28,51 @@ app.post('/webhook', function (req, res) {
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         //console.log(data);
         //console.log(data.USD);
-        sendMessage(event.sender.id,{text: "fetching info..."});
+        sendMessage(event.sender.id,{text: "fetching info..."}, {sender_action:typing_on});
         var currency = event.message.text.toUpperCase();
         
         switch(currency)
         {
             
             case "USD":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.USD.last});  
+            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});  
             break;
             case "ARS":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.ARS.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
             break;
             
             case "CNY":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.CNY.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
             break;
             case "PEN":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.PEN.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
             break;
             case "CLP":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.CLP.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
             break;
             case "COP":
-            sendMessage(event.sender.id, {text: "The last price is: " + data.COP.last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data.currency.last});
             break;
             case "VEF":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.VEF.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
             break;
             case "BRL":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.BRL.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
             break;
             case "UYU":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.UYU.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
             break;
             case "PYG":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.PYG.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
             break;
             case "BOB":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.BOB.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
             break;
             case "MXN":
-            sendMessage(event.sender.id, {text: "The last price  : " +  data.MXN.last});
+            sendMessage(event.sender.id, {text: "The last price  : " +  data.currency.last});
             break;
             case "CAD":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data.CAD.last});
+            sendMessage(event.sender.id, {text: "The last price is: " +  data.currency.last});
             break;
             default:
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
