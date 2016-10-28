@@ -114,9 +114,36 @@ app.post('/webhook', function (req, res) {
             case "UYU":
             sendMessage(event.sender.id, {text: data.UYU.last});
             break;
+            case "pyg":
+            sendMessage(event.sender.id, {text: data.PYG.last});
+            break;
+            case "Pyg":
+            sendMessage(event.sender.id, {text: data.PYG.last});
+            break;
+            case "PYG":
+            sendMessage(event.sender.id, {text: data.PYG.last});
+            break;
+            case "bob":
+            sendMessage(event.sender.id, {text: data.BOB.last});
+            break;
+            case "Bob":
+            sendMessage(event.sender.id, {text: data.BOB.last});
+            break;
+            case "BOB":
+            sendMessage(event.sender.id, {text: data.BOB.last});
+            break;
+            case "mxn":
+            sendMessage(event.sender.id, {text: data.MXN.last});
+            break;
+            case "Mxn":
+            sendMessage(event.sender.id, {text: data.MXN.last});
+            break;
+            case "MXN":
+            sendMessage(event.sender.id, {text: data.MXN.last});
+            break;
             default:
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
-            sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com for the currency to be added!"});
+            sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"});
 
 
 
