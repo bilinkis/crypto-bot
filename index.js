@@ -24,7 +24,9 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
-        wolfram.query(event.message.text, function(err, result) {
+        var data = JSON.parse(Get('http://api.bitcoincharts.com/v1/markets.json'));
+        console.log(data);
+        /*wolfram.query(event.message.text, function(err, result) {
             if(result == undefined){
                 sendMessage(event.sender.id, {text: "I couldn't find what you were looking for, sorry m8!"});
             } else{
@@ -39,9 +41,17 @@ app.post('/webhook', function (req, res) {
             
             })
         
+    }*/
     }
     res.sendStatus(200);
 });
+function Get(yourUrl){
+var Httpreq = new XMLHttpRequest(); // a new request
+Httpreq.open("GET",yourUrl,false);
+Httpreq.send(null);
+return Httpreq.responseText;          
+
+    }
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
