@@ -31,8 +31,16 @@ app.post('/webhook', function (req, res) {
         //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "fetching info..."});
         var currency = event.message.text.toUpperCase();
-        
-        switch(currency)
+        if (data[currency]!= undefined)
+        {
+            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
+        }
+        else{
+            sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
+            setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000);
+            
+        }
+        /*switch(currency)
         {
             
             case "USD":
@@ -106,7 +114,7 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
             setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000);
             
-
+*/
 
 
 
