@@ -94,7 +94,7 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: "The last price is: " + cryptos[6].price_btc});
             break;
             case "REP":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos["augur"].price_btc});
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[7].price_btc});
             break;
             case "WAVES":
             sendMessage(event.sender.id, {text: "The last price is: " + cryptos[8].price_btc});
