@@ -76,7 +76,31 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: "The last price is: " +  data[currency].last});
             break;
             case "ETH":
-            sendMessage(event.sender.id, {text: "The last price is:" + cryptos[1].price_btc});
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[1].price_btc});
+            break;
+            case "XRP":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[2].price_btc});
+            break;
+            case "LTC":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[3].price_btc});
+            break;
+            case "ETC":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[4].price_btc});
+            break;
+            case "XMR":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[5].price_btc});
+            break;
+            case "DASH":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[6].price_btc});
+            break;
+            case "REP":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos["augur"].price_btc});
+            break;
+            case "WAVES":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[8].price_btc});
+            break;
+            case "XEM":
+            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[9].price_btc});
             break;
             default:
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
