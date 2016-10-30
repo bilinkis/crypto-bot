@@ -25,27 +25,25 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
-        
-        
+        var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
+        var cryptos = JSON.parse(Get('https://api.coinmarketcap.com/v1/ticker/?limit=10'));
         //console.log(data);
         //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "fetching info..."});
         var currency = event.message.text.toUpperCase();
-        var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
-        var cryptos = JSON.parse(Get('https://www.cryptocompare.com/api/data/price?fsym='+currency+'&tsyms=USD'));
         if (data[currency]!= undefined)
         {
             sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
+            
         }
         else{
-            if(cryptos.Data.Price!=undefined)
-            {
-                sendMessage(event.sender.id, {text: "The last price is: " + cryptos.Data.Price});
-                sendMessage(event.sender.id, {text: "Or " + (cryptos.Data.Price/data[currency].last)+" BTC"});
+            var cryptoInfo = $.grep(cryptos, function(e){ return e.symbol == currency; });
+            if(cryptoInfo.price_usd!=undefined){
+                sendMessage(event.sender.id, {text: "The last price is: " + cryptoInfo.price_usd});
             } else{
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
             setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000);
-            }
+            } 
         }
         /*switch(currency)
         {
