@@ -22,11 +22,12 @@ app.get('/', function (req, res) {
 
 // for Facebook verification
 app.post('/webhook', function (req, res) {
-    sendTyping(event.sender.id, "typing_on");
+    
     var events = req.body.entry[0].messaging;
     for (var i = 0; i < events.length; i++) {
         //var crypto = event.message.text.toLowerCase();
         var event = events[i];
+        sendTyping(event.sender.id, "typing_on");
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ event.message.text+"-btc"));
         //console.log(data);
@@ -49,7 +50,7 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: "I'm sorry, but the input you entered is not a currency nor a cryptocoin"});
             setTimeout(function() {sendMessage(event.sender.id, {text: "I only accept currencies or cryptocurrencies symbols"});}, 500);
             setTimeout(function(){ sendMessage(event.sender.id, {text: "For example, if you send USD, i'll hook you up with Bitcoin's last price in USD"});},1000);
-            setTimeout(function(){ sendMessage(event.sender.id, {text: "Also, if you send, for example, eth, i'll reply with eth last price."});},1500);
+            setTimeout(function(){ sendMessage(event.sender.id, {text: "Also, if you send, for example, ETH, i'll reply with ETH's last price."});},1500);
             sendTyping(event.sender.id, "typing_off");
             } 
         }
