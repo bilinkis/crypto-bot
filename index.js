@@ -38,7 +38,7 @@ app.post('/webhook', function (req, res) {
         }
         else{
             //var cryptoInfo = $.grep(cryptos, function(e){ return e.symbol == currency; });
-            var cryptoInfo = crypto.filter(function(v) {
+            var cryptoInfo = cryptos.filter(function(v) {
     return v.symbol === currency; // Filter out the appropriate one
 });
             if(cryptoInfo.price_usd!=undefined){
