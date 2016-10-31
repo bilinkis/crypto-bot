@@ -27,7 +27,7 @@ app.post('/webhook', function (req, res) {
         //var crypto = event.message.text.toLowerCase();
         var event = events[i];
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
-        var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ crypto+"-btc"));
+        var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ event.message.text+"-btc"));
         //console.log(data);
         //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "fetching info..."});
