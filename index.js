@@ -27,8 +27,7 @@ app.post('/webhook', function (req, res) {
     for (var i = 0; i < events.length; i++) {
         //var crypto = event.message.text.toLowerCase();
         var event = events[i];
-        console.log(event.sender.id);
-        sendTyping(event.sender.id, "typing_on");
+        sendStatus(event.sender.id,"typing_on");
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ event.message.text+"-btc"));
         //console.log(data);
@@ -38,7 +37,7 @@ app.post('/webhook', function (req, res) {
         if (data[currency]!= undefined)
         {
             sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last +" "+currency});
-            sendTyping(event.sender.id, "typing_off");
+            
         }
         else{
             
@@ -46,13 +45,9 @@ app.post('/webhook', function (req, res) {
             if(cryptos.ticker!=undefined){
                 sendMessage(event.sender.id, {text: "The last price is: " + cryptos.ticker.price+" BTC"});
                 sendMessage(event.sender.id, {text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price+" USD"});
-                sendTyping(event.sender.id, "typing_off");
             } else{
-            sendMessage(event.sender.id, {text: "I'm sorry, but the input you entered is not a currency nor a cryptocoin"});
-            setTimeout(function() {sendMessage(event.sender.id, {text: "I only accept currencies or cryptocurrencies symbols"});}, 500);
-            setTimeout(function(){ sendMessage(event.sender.id, {text: "For example, if you send USD, i'll hook you up with Bitcoin's last price in USD"});},1000);
-            setTimeout(function(){ sendMessage(event.sender.id, {text: "Also, if you send, for example, ETH, i'll reply with ETH's last price."});},1500);
-            sendTyping(event.sender.id, "typing_off");
+            sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
+            sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"});
             } 
         }
         /*switch(currency)
@@ -163,23 +158,6 @@ Httpreq.send(null);
 return Httpreq.responseText;          
 
     }
-    function sendTyping(recipientId, status) {
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: "EAAa1VXnZAdXkBAGRYcOFlp8pihY6xHRuQ6ZC741dgOzjiT3KJV9pqZBAJ2RSMiaHk0Qgj4gvgND4VbTZCGoqwlz5NCZCkDUdxsPiZCQ8Hurp1tTaokG9m4Sa8ctZBYGMrDCD53hLpNZCDKG1yNKMd076e9nM7y3DnVawxP8QZAA1zjAZDZD"},
-        method: 'POST',
-        json: {
-            recipient: {id: recipientId},
-            sender_action: status,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending status: ', error);
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
-        }
-    });
-};
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -188,6 +166,23 @@ function sendMessage(recipientId, message) {
         json: {
             recipient: {id: recipientId},
             message: message,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+    });
+};
+function sendStatus(recipientId, status) {
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token: "EAAa1VXnZAdXkBAGRYcOFlp8pihY6xHRuQ6ZC741dgOzjiT3KJV9pqZBAJ2RSMiaHk0Qgj4gvgND4VbTZCGoqwlz5NCZCkDUdxsPiZCQ8Hurp1tTaokG9m4Sa8ctZBYGMrDCD53hLpNZCDKG1yNKMd076e9nM7y3DnVawxP8QZAA1zjAZDZD"},
+        method: 'POST',
+        json: {
+            recipient: {id: recipientId},
+            sender_action: status,
         }
     }, function(error, response, body) {
         if (error) {
