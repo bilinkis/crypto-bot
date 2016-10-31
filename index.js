@@ -29,6 +29,7 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         //sendStatus(event.sender.id,"typing_on");
         //var currency = escape(event.message.text.toUpperCase());
+        if(event.message.text!=undefined){
         console.log(event);
         var currency = escape(event.message.text.toUpperCase());
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
@@ -55,9 +56,13 @@ app.post('/webhook', function (req, res) {
 
 
             
+    } else{
+        sendMessage(event.sender.id, {text: "Unsupported character"});
     }
     
     res.sendStatus(200);
+    }
+    
 });
 function Get(yourUrl){
 var Httpreq = new XMLHttpRequest(); // a new request
