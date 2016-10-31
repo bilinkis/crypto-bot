@@ -29,6 +29,7 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         //sendStatus(event.sender.id,"typing_on");
         //var currency = escape(event.message.text.toUpperCase());
+        console.log(event.message);
         var currency = escape(event.message.text.toUpperCase());
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ currency+"-btc"));
@@ -48,104 +49,13 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"});
             } 
         }
-        /*switch(currency)
-        {
-            
-            case "USD":
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});  
-            break;
-            case "ARS":
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
-            break;
-            
-            case "CNY":
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
-            break;
-            case "PEN":
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
-            break;
-            case "CLP":
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
-            break;
-            case "COP":
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
-            break;
-            case "VEF":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data[currency].last});
-            break;
-            case "BRL":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data[currency].last});
-            break;
-            case "UYU":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data[currency].last});
-            break;
-            case "PYG":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data[currency].last});
-            break;
-            case "BOB":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data[currency].last});
-            break;
-            case "MXN":
-            sendMessage(event.sender.id, {text: "The last price  : " +  data[currency].last});
-            break;
-            case "CAD":
-            sendMessage(event.sender.id, {text: "The last price is: " +  data[currency].last});
-            break;
-            case "ETH":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[1].price_btc});
-            break;
-            case "XRP":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[2].price_btc});
-            break;
-            case "LTC":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[3].price_btc});
-            break;
-            case "ETC":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[4].price_btc});
-            break;
-            case "XMR":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[5].price_btc});
-            break;
-            case "DASH":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[6].price_btc});
-            break;
-            case "REP":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[7].price_btc});
-            break;
-            case "WAVES":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[8].price_btc});
-            break;
-            case "XEM":
-            sendMessage(event.sender.id, {text: "The last price is: " + cryptos[9].price_btc});
-            break;
-            default:
-            sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
-            setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000);
-            
-*/
 
 
 
 
 
             
-        }
-        /*wolfram.query(event.message.text, function(err, result) {
-            if(result == undefined){
-                sendMessage(event.sender.id, {text: "I couldn't find what you were looking for, sorry m8!"});
-            } else{
-                for(var i = 0;i<result.length; i++)
-                {
-                    console.log(result[i].subpods[0]);
-                sendMessage(event.sender.id, {text: result[i].subpods[0].value});
-                sendMessage(event.sender.id, {attachment:{type:"image", payload:{url:result[i].subpods[0].image}}})
-                }
-                
-            }
-            
-            })
-        
-    }*/
+    }
     
     res.sendStatus(200);
 });
