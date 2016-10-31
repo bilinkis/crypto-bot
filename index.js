@@ -15,7 +15,7 @@ jsdom.env({
   ]
 }, function (err, window) {
   var $ = window.jQuery;
-
+});
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -183,4 +183,5 @@ function sendMessage(recipientId, message) {
 app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'))
 })
+
     
