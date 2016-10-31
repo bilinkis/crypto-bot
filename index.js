@@ -159,7 +159,7 @@ return Httpreq.responseText;
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: "EAAa1VXnZAdXkBALTr0ZAYlopUWZA6u3YWhHpRg4toVpoXQ22lBVxEENqeTIEAsjoRmchI5nIAmScB4UuJ4MGjzQBDsv6SqDyPeAt33J3gHO8hkrFGFxfypS9nJ5RKaKk3ATW2NOZAVOmOhAoBgsZCwNr6SJiZAjrqm0vgUXcLP9AZDZD"},
+        qs: {access_token: "EAAa1VXnZAdXkBAGRYcOFlp8pihY6xHRuQ6ZC741dgOzjiT3KJV9pqZBAJ2RSMiaHk0Qgj4gvgND4VbTZCGoqwlz5NCZCkDUdxsPiZCQ8Hurp1tTaokG9m4Sa8ctZBYGMrDCD53hLpNZCDKG1yNKMd076e9nM7y3DnVawxP8QZAA1zjAZDZD"},
         method: 'POST',
         json: {
             recipient: {id: recipientId},
