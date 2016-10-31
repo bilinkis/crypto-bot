@@ -34,7 +34,7 @@ app.post('/webhook', function (req, res) {
         var currency = event.message.text.toUpperCase();
         if (data[currency]!= undefined)
         {
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last} +""+currency );
+            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last} +" "+currency );
             
         }
         else{
