@@ -6,16 +6,7 @@ const request = require('request')
 const app = express()
 const wolfram = require('wolfram').createClient("6PUVEA-P8K93R4666");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const jsdom = require('jsdom');
 
-jsdom.env({  
-  html: "<html><body></body></html>",
-  scripts: [
-    'http://code.jquery.com/jquery-1.5.min.js'
-  ]
-}, function (err, window) {
-  var $ = window.jQuery;
-});
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -46,7 +37,10 @@ app.post('/webhook', function (req, res) {
             
         }
         else{
-            var cryptoInfo = $.grep(cryptos, function(e){ return e.symbol == currency; });
+            //var cryptoInfo = $.grep(cryptos, function(e){ return e.symbol == currency; });
+            var cryptoInfo = crypto.filter(function(v) {
+    return v.symbol === currency; // Filter out the appropriate one
+});
             if(cryptoInfo.price_usd!=undefined){
                 sendMessage(event.sender.id, {text: "The last price is: " + cryptoInfo.price_usd});
             } else{
