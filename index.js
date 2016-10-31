@@ -41,8 +41,6 @@ app.post('/webhook', function (req, res) {
             
         }
         else{
-            
-            
             if(cryptos.ticker!=undefined){
                 sendMessage(event.sender.id, {text: "The last price is: " + cryptos.ticker.price+" BTC"});
                 setTimeout(function() {sendMessage(event.sender.id, {text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price+" USD"});}, 500);
