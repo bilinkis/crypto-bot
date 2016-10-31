@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
     res.send('Hello world, I am a chat bot')
 })
 
-// for Facebook verification
+
 app.post('/webhook', function (req, res) {
     
     var events = req.body.entry[0].messaging;
