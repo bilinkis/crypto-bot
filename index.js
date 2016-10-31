@@ -28,12 +28,13 @@ app.post('/webhook', function (req, res) {
         //var crypto = event.message.text.toLowerCase();
         var event = events[i];
         //sendStatus(event.sender.id,"typing_on");
+        var currency = event.message.text.toUpperCase();
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
-        var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ event.message.text+"-btc"));
+        var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ currency+"-btc"));
         //console.log(data);
         //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "fetching info..."});
-        var currency = event.message.text.toUpperCase();
+        
         if (data[currency]!= undefined)
         {
             sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last +" "+currency});
