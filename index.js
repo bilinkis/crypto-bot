@@ -34,14 +34,14 @@ app.post('/webhook', function (req, res) {
         var currency = event.message.text.toUpperCase();
         if (data[currency]!= undefined)
         {
-            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last});
+            sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last} + currency);
             
         }
         else{
             
             
             if(cryptos.ticker!=undefined){
-                sendMessage(event.sender.id, {text: "The last price is: " + cryptos.ticker.price});
+                sendMessage(event.sender.id, {text: "The last price is: " + cryptos.ticker.price+" BTC"});
                 sendMessage(event.sender.id, {text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price+" USD"});
             } else{
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
