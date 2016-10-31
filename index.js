@@ -26,7 +26,7 @@ app.post('/webhook', function (req, res) {
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
-        var cryptos = JSON.parse(Get('http://api.cryptocoincharts.info/listCoins'));
+        var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ event.message.text+"-btc"));
         //console.log(data);
         //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "fetching info..."});
@@ -38,11 +38,10 @@ app.post('/webhook', function (req, res) {
         }
         else{
             
-            var cryptoInfo = cryptos.filter(function(v) {
-    return v.name === currency; // Filter out the appropriate one
-});
-            if(cryptoInfo.price_usd!=undefined){
-                sendMessage(event.sender.id, {text: "The last price is: " + cryptoInfo.price_usd});
+            
+            if(cryptos.ticker.price!=undefined){
+                sendMessage(event.sender.id, {text: "The last price is: " + cryptos.ticker.price});
+                sendMessage(event.sender.id, {text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price});
             } else{
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
             setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000);
