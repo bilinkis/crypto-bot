@@ -27,6 +27,7 @@ app.post('/webhook', function (req, res) {
     for (var i = 0; i < events.length; i++) {
         //var crypto = event.message.text.toLowerCase();
         var event = events[i];
+        console.log(event.sender.id);
         sendTyping(event.sender.id, "typing_on");
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
         var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ event.message.text+"-btc"));
