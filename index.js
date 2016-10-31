@@ -33,8 +33,7 @@ app.post('/webhook', function (req, res) {
         var cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/'+ currency+"-btc"));
         //console.log(data);
         //console.log(data.USD);
-        //sendMessage(event.sender.id,{text: "fetching info..."});
-        
+        sendMessage(event.sender.id,{text: "fetching info..."});
         if (data[currency]!= undefined)
         {
             sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last +" "+currency});
