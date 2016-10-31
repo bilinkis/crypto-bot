@@ -45,7 +45,7 @@ app.post('/webhook', function (req, res) {
                 sendMessage(event.sender.id, {text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price+" USD"});
             } else{
             sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
-            setTimeout(sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"}), 1000);
+            sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"});
             } 
         }
         /*switch(currency)
