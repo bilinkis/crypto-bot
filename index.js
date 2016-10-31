@@ -37,7 +37,6 @@ app.post('/webhook', function (req, res) {
         if (data[currency]!= undefined)
         {
             sendMessage(event.sender.id, {text: "The last price is: " + data[currency].last +" "+currency});
-            
         }
         else{
             if(cryptos.ticker!=undefined){
