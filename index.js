@@ -44,8 +44,10 @@ app.post('/webhook', function (req, res) {
                 sendMessage(event.sender.id, {text: "The last price is: " + cryptos.ticker.price+" BTC"});
                 sendMessage(event.sender.id, {text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price+" USD"});
             } else{
-            sendMessage(event.sender.id, {text: "The currency you entered doesn't exist or is not supported"});
-            sendMessage(event.sender.id, {text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"});
+            sendMessage(event.sender.id, {text: "I'm sorry, but the input you entered is not a currency nor a cryptocoin"});
+            sendMessage(event.sender.id, {text: "I only accept currencies or cryptocurrencies symbols"});
+            sendMessage(event.sender.id, {text: "For example, if you send USD, i'll hook you up with Bitcoin's last price in USD"});
+            sendMessage(event.sender.id, {text: "Also, if you send, for example, eth, i'll reply with eth last price."});
             } 
         }
         /*switch(currency)
