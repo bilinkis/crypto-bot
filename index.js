@@ -6,7 +6,15 @@ const request = require('request')
 const app = express()
 const wolfram = require('wolfram').createClient("6PUVEA-P8K93R4666");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const $ = require('jquery');
+const jsdom = require('jsdom');
+
+jsdom.env({  
+  html: "<html><body></body></html>",
+  scripts: [
+    'http://code.jquery.com/jquery-1.5.min.js'
+  ]
+}, function (err, window) {
+  var $ = window.jQuery;
 
 app.set('port', (process.env.PORT || 5000))
 
