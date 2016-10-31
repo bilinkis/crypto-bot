@@ -26,7 +26,7 @@ app.post('/webhook', function (req, res) {
     for (var i = 0; i < events.length; i++) {
         var event = events[i];
         var data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
-        var cryptos = JSON.parse(Get('https://api.coinmarketcap.com/v1/ticker/?limit=10'));
+        var cryptos = JSON.parse(Get('http://api.cryptocoincharts.info/listCoins'));
         //console.log(data);
         //console.log(data.USD);
         //sendMessage(event.sender.id,{text: "fetching info..."});
@@ -37,9 +37,9 @@ app.post('/webhook', function (req, res) {
             
         }
         else{
-            //var cryptoInfo = $.grep(cryptos, function(e){ return e.symbol == currency; });
+            
             var cryptoInfo = cryptos.filter(function(v) {
-    return v.symbol === currency; // Filter out the appropriate one
+    return v.name === currency; // Filter out the appropriate one
 });
             if(cryptoInfo.price_usd!=undefined){
                 sendMessage(event.sender.id, {text: "The last price is: " + cryptoInfo.price_usd});
