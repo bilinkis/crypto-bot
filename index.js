@@ -34,11 +34,14 @@ app.post('/webhook', function(req, res) {
     if (event.message.text != undefined) {
       console.log(event);
       let info = event.message.text.split(" ");
+      if(info[1]){
+        info[1] = Number(info[1]);
+      }
       let currency = escape(event.message.text.split(' ')[0].toUpperCase());
       let data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
       let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
       if (data[currency] != undefined) {
-        if (typeof info[1] === 'number') {
+        if (isNaN(info[1])!=false) {
           sendMessage(event.sender.id, {
             text: "The last price is: " + data[currency].last * info[1] + " " + currency
           });
@@ -52,7 +55,7 @@ app.post('/webhook', function(req, res) {
       else {
         if (cryptos.ticker != undefined) {
           console.log(typeof info[1]);
-          if (typeof info[1] === 'number') {
+          if (isNaN(info[1])!=false) {
             sendMessage(event.sender.id, {
               text: "The last price is: " + cryptos.ticker.price * info[1] + " BTC"
             });
