@@ -51,7 +51,7 @@ app.post('/webhook', function(req, res) {
         }
       else {
         if (cryptos.ticker != undefined) {
-          if (typeof info[1] === 'number') {
+          if (info[1]) {
             sendMessage(event.sender.id, {
               text: "The last price is: " + cryptos.ticker.price * info[1] + " BTC"
             });
