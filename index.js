@@ -45,14 +45,26 @@ app.post('/webhook', function(req, res) {
             }
             else {
                 if (cryptos.ticker != undefined) {
+                    if(typeof info[1] === 'number')
+                    {
                     sendMessage(event.sender.id, {
-                        text: "The last price is: " + cryptos.ticker.price + " BTC"
+                        text: "The last price is: " + cryptos.ticker.price *info[1] + " BTC"
                     });
                     setTimeout(function() {
                         sendMessage(event.sender.id, {
-                            text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price + " USD"
+                            text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price+ " USD"
                         });
                     }, 500);
+                } else{
+                    sendMessage(event.sender.id, {
+                        text: "The last price is: " + cryptos.ticker.price *info[1] + " BTC"
+                    });
+                    setTimeout(function() {
+                        sendMessage(event.sender.id, {
+                            text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price+ " USD"
+                        });
+                    }, 500);
+                }
                 }
                 else {
                     info[1] = Number(info[1]);
