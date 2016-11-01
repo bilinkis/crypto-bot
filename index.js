@@ -89,7 +89,7 @@ app.post('/webhook', function(req, res) {
             }, 500);
             setTimeout(function() {
               sendMessage(event.sender.id, {
-                text: "This are some examples: for BTC price, just send me the currency you want the price in"
+                text: "Here are some examples: for BTC price, just send me the currency you want the price in. For example: ars or usd"
               });
             }, 1000);
             setTimeout(function() {
