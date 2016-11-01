@@ -37,21 +37,24 @@ app.post('/webhook', function(req, res) {
       let currency = escape(event.message.text.split(' ')[0].toUpperCase());
       let data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
       let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
-
+      if (info[1]) {
+        info[1] = Number(info[1])
+      }
       if (data[currency] != undefined) {
-        if(typeof info[1]==='number'){
-        sendMessage(event.sender.id, {
-          text: "The last price is: " + data[currency].last *info[1]+ " " + currency
-        });
-        }else{
-           sendMessage(event.sender.id, {
-          text: "The last price is: " + data[currency].last + " " + currency
-        });
+        if (typeof info[1] === 'number') {
+          sendMessage(event.sender.id, {
+            text: "The last price is: " + data[currency].last * info[1] + " " + currency
+          });
         }
+        else {
+          sendMessage(event.sender.id, {
+            text: "The last price is: " + data[currency].last + " " + currency
+          });
         }
+      }
       else {
         if (cryptos.ticker != undefined) {
-          if (info[1]) {
+          if (typeof info[1] === 'number') {
             sendMessage(event.sender.id, {
               text: "The last price is: " + cryptos.ticker.price * info[1] + " BTC"
             });
@@ -63,7 +66,7 @@ app.post('/webhook', function(req, res) {
           }
           else {
             sendMessage(event.sender.id, {
-              text: "The last price is: " + cryptos.ticker.price+ " BTC"
+              text: "The last price is: " + cryptos.ticker.price + " BTC"
             });
             setTimeout(function() {
               sendMessage(event.sender.id, {
@@ -73,18 +76,18 @@ app.post('/webhook', function(req, res) {
           }
         }
 
-          else {
+        else {
 
-            sendMessage(event.sender.id, {
-              text: "The currency you entered doesn't exist or is not supported"
-            });
-            sendMessage(event.sender.id, {
-              text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"
-            });
-          }
-
+          sendMessage(event.sender.id, {
+            text: "The currency you entered doesn't exist or is not supported"
+          });
+          sendMessage(event.sender.id, {
+            text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"
+          });
         }
+
       }
+    }
 
     else {
       sendMessage(event.sender.id, {
