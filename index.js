@@ -37,9 +37,6 @@ app.post('/webhook', function(req, res) {
       let currency = escape(event.message.text.split(' ')[0].toUpperCase());
       let data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
       let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
-      if (info[1]) {
-        info[1] = Number(info[1])
-      }
       if (data[currency] != undefined) {
         if (typeof info[1] === 'number') {
           sendMessage(event.sender.id, {
