@@ -34,9 +34,9 @@ app.post('/webhook', function(req, res) {
         if (event.message.text != undefined) {
             console.log(event);
             let info = event.message.text.split(" ");
-            let currency = escape(event.message.text.toUpperCase());
+            let currency = escape(event.message.text.split(' ')[0].toUpperCase());
             let data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
-            let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + info[0] + "-btc"));
+            let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
             
             if (data[currency] != undefined) {
                 sendMessage(event.sender.id, {
