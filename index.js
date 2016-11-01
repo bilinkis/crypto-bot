@@ -72,30 +72,6 @@ app.post('/webhook', function(req, res) {
             }, 500);
           }
         }
-        else {
-          info[1] = Number(info[1]);
-  
-          if (typeof info[1] === 'number') {
-            
-            if (cryptos.ticker != undefined) {
-
-              sendMessage(event.sender.id, {
-                text: "The last price is: " + cryptos.ticker.price * info[1] + " BTC"
-              });
-              setTimeout(function() {
-                sendMessage(event.sender.id, {
-                  text: "Which is also the same to: " + (data["USD"].last * cryptos.ticker.price) * info[1] + " USD"
-                });
-              }, 500);
-            }
-            else {
-              if (data[currency] != undefined) {
-                sendMessage(event.sender.id, {
-                  text: "The last price is: " + data[currency].last * info[1] + " " + currency
-                });
-              }
-            }
-          }
 
           else {
 
@@ -110,12 +86,6 @@ app.post('/webhook', function(req, res) {
         }
       }
 
-
-
-
-
-
-    }
     else {
       sendMessage(event.sender.id, {
         text: "Unsupported character"
