@@ -58,7 +58,7 @@ app.post('/webhook', function(req, res) {
             });
             setTimeout(function() {
               sendMessage(event.sender.id, {
-                text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price * info[1] + " USD"
+                text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price * (typeof info[1] === 'number' ? info[1] : 1) + " USD"
               });
             }, 500);
           }
