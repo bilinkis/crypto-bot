@@ -80,11 +80,28 @@ app.post('/webhook', function(req, res) {
         else {
 
           sendMessage(event.sender.id, {
-            text: "The currency you entered doesn't exist or is not supported"
+            text: "I'm sorry but your input is not a command I can recognize"
           });
-          sendMessage(event.sender.id, {
-            text: "If you think this is a mistake, send an email to nico@bilinkis.com, for the currency to be added!"
-          });
+          setTimeout(function() {
+              sendMessage(event.sender.id, {
+                text: "I recognize a short list of commands"
+              });
+            }, 500);
+            setTimeout(function() {
+              sendMessage(event.sender.id, {
+                text: "This are some examples: for BTC price, just send me the currency you want the price in"
+              });
+            }, 1000);
+            setTimeout(function() {
+              sendMessage(event.sender.id, {
+                text: "For altcoin price, just send me the altcoin symbol. For example: eth or ltc"
+              });
+            }, 1500);
+            setTimeout(function() {
+              sendMessage(event.sender.id, {
+                text: "If you want a specific amount, just send the symbol, and the amount. For example: eth 100"
+              });
+            }, 2000);
         }
 
       }
