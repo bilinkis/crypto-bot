@@ -55,6 +55,7 @@ app.post('/webhook', function(req, res) {
                 }
                 else {
                     console.log(info);
+                    info[1] = Number(info[1]);
                     if (typeof info[1] === 'number') {
                         if (cryptos.ticker != undefined) {
                             sendMessage(event.sender.id, {
