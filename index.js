@@ -36,7 +36,7 @@ app.post('/webhook', function(req, res) {
             let currency = escape(event.message.text.toUpperCase());
             let data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
             let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
-            let info = currency.split(" ");
+            let info = event.message.text.split(" ");
             if (data[currency] != undefined) {
                 sendMessage(event.sender.id, {
                     text: "The last price is: " + data[currency].last + " " + currency
