@@ -54,6 +54,7 @@ app.post('/webhook', function(req, res) {
                     }, 500);
                 }
                 else {
+                    console.log(info);
                     if (typeof info[1] === 'number') {
                         if (cryptos.ticker != undefined) {
                             sendMessage(event.sender.id, {
