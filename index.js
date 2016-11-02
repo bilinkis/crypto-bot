@@ -42,7 +42,7 @@ app.post('/webhook', function(req, res) {
       if (data[currency] != undefined) {
         if (!isNaN(info[1])) {
           sendMessage(event.sender.id, {
-            text: "The last price is: " + data[currency].last * info[1] + " " + currency
+            text: info [1] + info[0].toUpperCase() + " are worth: " + info[1]/data[info[0]].last  + "BTC"
           });
         }
         else {
