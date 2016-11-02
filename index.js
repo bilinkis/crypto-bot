@@ -44,7 +44,7 @@ app.post('/webhook', function(req, res) {
         if (!isNaN(info[1])) {
           let value = info[1] / data[currency].last;
           sendMessage(event.sender.id, {
-            text: "With " + info[1] + info[0] + "you can buy: " + value
+            text: "With " + info[1] +" "+ info[0] + " you can buy: " + value + "BTC"
           });
         }
         else {
