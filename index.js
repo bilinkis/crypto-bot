@@ -22,7 +22,6 @@ app.get('/', function(req, res) {
   res.send('Hello world, I am a chat bot')
 })
 
-
 app.post('/webhook', function(req, res) {
 
   let events = req.body.entry[0].messaging;
