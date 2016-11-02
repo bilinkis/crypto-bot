@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "emoji-strip": "0.0.3",
     "express": "^4.14.0",
     "request": "^2.76.0",
     "xmlhttprequest": "^1.8.0"

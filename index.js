@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const emojiStrip = require('emoji-strip')
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 app.set('port', (process.env.PORT || 5000))
@@ -29,13 +30,14 @@ app.post('/webhook', function(req, res) {
     let event = events[i];
     //sendStatus(event.sender.id,"typing_on");
     //let currency = escape(event.message.text.toUpperCase());
-    if (event.message.text!=undefined) {
+    let message = emojiStrip(event.message.text);
+    if (message!=undefined) {
       console.log(event);
-      let info = event.message.text.split(" ");
+      let info = message.split(" ");
       if (info[1]) {
         info[1] = Number(info[1]);
       }
-      let currency = escape(event.message.text.split(' ')[0].toUpperCase());
+      let currency = escape(message.split(' ')[0].toUpperCase());
       let data = JSON.parse(Get('https://api.bitcoinaverage.com/ticker/global/all'));
       let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
       if (data[currency] != undefined) {
