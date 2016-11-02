@@ -29,7 +29,7 @@ app.post('/webhook', function(req, res) {
     let event = events[i];
     //sendStatus(event.sender.id,"typing_on");
     //let currency = escape(event.message.text.toUpperCase());
-    if (event.message.text != undefined) {
+    if (event.message.text.replace(/[\uE000-\uF8FF]/g, '')) {
       console.log(event);
       let info = event.message.text.split(" ");
       if (info[1]) {
