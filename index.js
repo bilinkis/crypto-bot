@@ -42,9 +42,8 @@ app.post('/webhook', function(req, res) {
       let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
       if (data[currency] != undefined) {
         if (!isNaN(info[1])) {
-          let value = info[1] / data[currency].last;
           sendMessage(event.sender.id, {
-            text: "With " + info[1] +" "+ info[0].toUpperCase() + " you can buy: " + value + " BTC"
+            text: "The last price is: " + data[currency].last * info[1] + " " + currency
           });
         }
         else {
@@ -58,7 +57,7 @@ app.post('/webhook', function(req, res) {
           console.log(typeof info[1]);
           if (!isNaN(info[1])) {
             sendMessage(event.sender.id, {
-              text: "The last price is: " + cryptos.ticker.price * info[1] + " BTC"
+              text: info[1] + " " + info[0].toUpperCase() + " are worth: " + cryptos.ticker.price * info[1]
             });
             setTimeout(function() {
               sendMessage(event.sender.id, {
