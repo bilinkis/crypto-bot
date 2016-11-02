@@ -22,6 +22,7 @@ app.get('/', function(req, res) {
   res.send('Hello world, I am a chat bot')
 })
 
+
 app.post('/webhook', function(req, res) {
 
   let events = req.body.entry[0].messaging;
@@ -33,7 +34,7 @@ app.post('/webhook', function(req, res) {
     if (event.message.text != undefined) {
       console.log(event);
       let info = event.message.text.split(" ");
-      if(info[1]){
+      if (info[1]) {
         info[1] = Number(info[1]);
       }
       let currency = escape(event.message.text.split(' ')[0].toUpperCase());
@@ -41,8 +42,9 @@ app.post('/webhook', function(req, res) {
       let cryptos = JSON.parse(Get('https://api.cryptonator.com/api/ticker/' + currency + "-btc"));
       if (data[currency] != undefined) {
         if (!isNaN(info[1])) {
+          let value = info[1] / data[currency].last;
           sendMessage(event.sender.id, {
-            text: "The last price is: " + data[currency].last * info[1] + " " + currency
+            text: "With " + info[1] + info[0] + "you can buy: " + value
           });
         }
         else {
@@ -60,7 +62,7 @@ app.post('/webhook', function(req, res) {
             });
             setTimeout(function() {
               sendMessage(event.sender.id, {
-                text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price * (typeof info[1] === 'number' ? info[1] : 1) + " USD"
+                text: "Which is also the same to: " + data["USD"].last * cryptos.ticker.price * info[1] + " USD"
               });
             }, 500);
           }
@@ -82,25 +84,25 @@ app.post('/webhook', function(req, res) {
             text: "I'm sorry but your input is not a command I can recognize"
           });
           setTimeout(function() {
-              sendMessage(event.sender.id, {
-                text: "I recognize a short list of commands"
-              });
-            }, 500);
-            setTimeout(function() {
-              sendMessage(event.sender.id, {
-                text: "Here are some examples: for BTC price, just send me the currency you want the price in. For example: ars or usd"
-              });
-            }, 1000);
-            setTimeout(function() {
-              sendMessage(event.sender.id, {
-                text: "For altcoin price, just send me the altcoin symbol. For example: eth or ltc"
-              });
-            }, 1500);
-            setTimeout(function() {
-              sendMessage(event.sender.id, {
-                text: "If you want a specific amount, just send the symbol, and the amount. For example: eth 100"
-              });
-            }, 2000);
+            sendMessage(event.sender.id, {
+              text: "I recognize a short list of commands"
+            });
+          }, 500);
+          setTimeout(function() {
+            sendMessage(event.sender.id, {
+              text: "Here are some examples: for BTC price, just send me the currency you want the price in. For example: ars or usd"
+            });
+          }, 1000);
+          setTimeout(function() {
+            sendMessage(event.sender.id, {
+              text: "For altcoin price, just send me the altcoin symbol. For example: eth or ltc"
+            });
+          }, 1500);
+          setTimeout(function() {
+            sendMessage(event.sender.id, {
+              text: "If you want a specific amount, just send the symbol, and the amount. For example: eth 100"
+            });
+          }, 2000);
         }
 
       }
