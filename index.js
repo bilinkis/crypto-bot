@@ -31,6 +31,9 @@ app.post('/webhook', function(req, res) {
     //sendStatus(event.sender.id,"typing_on");
     //let currency = escape(event.message.text.toUpperCase());
     let message = emojiStrip(event.message.text);
+    if (message == ""){
+      message = "usd";
+    }
     console.log(message);
     if (message!=undefined) {
       console.log(event);
