@@ -30,12 +30,15 @@ app.post('/webhook', function(req, res) {
     let event = events[i];
     //sendStatus(event.sender.id,"typing_on");
     //let currency = escape(event.message.text.toUpperCase());
-    let message = emojiStrip(event.message.text);
+    
+    
+    console.log(message);
+    if (event.message.text!=undefined) {
+      let message = emojiStrip(event.message.text);
     if (message == ""){
       message = "emoji";
     }
-    console.log(message);
-    if (message!=undefined && message !="emoji") {
+    if(message=="emoji"){
       console.log(event);
       let info = message.split(" ");
       if (info[1]) {
@@ -58,7 +61,6 @@ app.post('/webhook', function(req, res) {
       }
       else {
         if (cryptos.ticker != undefined) {
-          console.log(typeof info[1]);
           if (!isNaN(info[1])) {
             sendMessage(event.sender.id, {
               text: info[1] + " " + info[0].toUpperCase() + " are worth: " + cryptos.ticker.price * info[1]
@@ -110,7 +112,7 @@ app.post('/webhook', function(req, res) {
 
       }
     }
-
+}
     else {
       sendMessage(event.sender.id, {
         text: "Unsupported character"
