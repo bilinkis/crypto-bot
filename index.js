@@ -32,7 +32,6 @@ app.post('/webhook', function(req, res) {
     //let currency = escape(event.message.text.toUpperCase());
     
     
-    console.log(message);
     if (event.message.text!=undefined) {
       let message = emojiStrip(event.message.text);
     if (message == ""){
