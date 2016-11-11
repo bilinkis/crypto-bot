@@ -5,8 +5,8 @@ Crypto bot, will fetch the latest cryptocurrency price on-demand
 
 
 You can also get Bitcoin Price in every currency in the world.
-
-
+This is the live demo of the BOT as a Facebook Messenger 
+[!Message](http://img.labnol.org/di/facebook-messenger.png)](https://www.messenger.com/t/1131892063567734)
 
 
 ### Tech
